@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:videoplayer/controller/profile/userprofile.dart';
 import 'package:videoplayer/view/ath&otp/otp/otppage.dart';
 import 'package:videoplayer/view/homepage/homePage.dart';
+import 'package:videoplayer/view/userdetails/profilepage.dart';
 // import 'package:machinetasklilac/controller/profile/userprofile.dart';
 // import 'package:machinetasklilac/view/Homepage/homePage.dart';
 // import 'package:machinetasklilac/view/ath&otp/otp/otppage.dart';
@@ -94,7 +95,7 @@ class Authphone extends GetxController {
       smsCode: userController.otpcontroller.text.toString().trim(),
     );
     auth.signInWithCredential(credential).then((value) {
-      Get.put(const HomePage());
+      Get.put(const UserProfilePage());
     });
   } catch (ex, stackTrace) {
     print("Error during OTP verification: ${ex}");

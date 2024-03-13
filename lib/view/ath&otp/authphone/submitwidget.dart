@@ -9,11 +9,10 @@ import 'package:videoplayer/controller/auth/authphone.dart';
 class Authsubmit extends StatelessWidget {
   const Authsubmit({super.key});
 
-
   @override
   Widget build(BuildContext context) {
-    var usercotrol=Get.put(Authphone());
-     var cotrol=Get.put(Authphone());
+    var usercotrol = Get.put(Authphone());
+    var cotrol = Get.put(Authphone());
     var mediaqury = MediaQuery.of(context).size;
     return
         //  Obx(
@@ -25,9 +24,8 @@ class Authsubmit extends StatelessWidget {
         style: const ButtonStyle(
           backgroundColor: MaterialStatePropertyAll(Colors.greenAccent),
         ),
-        onPressed: ()async {
-         await usercotrol.verifyPhoneNumber(context);
-          
+        onPressed: () async {
+          await usercotrol.verifyPhoneNumber(context);
         },
         child:
             // control.loading.value

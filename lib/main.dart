@@ -8,14 +8,12 @@ import 'package:videoplayer/firebase_options.dart';
 // import 'package:machinetasklilac/firebase_options.dart';
 // import 'package:machinetasklilac/view/ath&otp/authphone/authPhone.dart';
 // import 'package:machinetasklilac/view/userdetails/profilepage.dart';
-import 'package:videoplayer/view/ath&otp/authphone/authPhone.dart';
+import 'package:videoplayer/view/email_password/Design%20Page/sign_inPage.dart';
 
 void main() async {
- WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
 
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform
-    );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
 }
 
@@ -29,6 +27,6 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: const PhoneAuth ());
+        home: SignPage());
   }
 }

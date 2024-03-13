@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "183954312491",
+    "project_id": "taskvideoplayer-6c4d5",
+    "storage_bucket": "taskvideoplayer-6c4d5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:183954312491:android:0c1c54b043bd20dc87c96e",
+        "android_client_info": {
+          "package_name": "com.example.videoplayer"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxAzhtWCOe9RWHik38wY75Lxlvjjr9whU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

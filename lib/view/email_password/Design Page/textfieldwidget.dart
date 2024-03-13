@@ -12,7 +12,7 @@ class TextFormFieldPage extends StatelessWidget {
   }) : _formKey = formKey;
 
   final GlobalKey<FormState> _formKey;
-  final Authcontroler control;
+  final AuthLogincontroler control;
 
   @override
   Widget build(BuildContext context) {

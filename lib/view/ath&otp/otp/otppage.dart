@@ -19,7 +19,7 @@ class OtpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final usercontol = Get.put(Usercontroler());
+    final usercontol = Get.put(UserProfilecontroler());
     final authcontol = Get.put(Authphone());
 
     var mediaquery = MediaQuery.of(context).size;

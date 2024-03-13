@@ -20,7 +20,7 @@ class PhoneAuth extends StatefulWidget {
 
 class _PhoneAuthState extends State<PhoneAuth> {
   final _formKey = GlobalKey<FormState>();
-  var control = Get.put(Usercontroler());
+  var control = Get.put(UserProfilecontroler());
   var mediaqury;
 
   @override

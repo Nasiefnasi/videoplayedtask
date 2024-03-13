@@ -4,17 +4,20 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
+import 'package:videoplayer/controller/profile/userprofile.dart';
 import 'package:videoplayer/view/email_password/Design%20Page/loginpage.dart';
-import 'package:videoplayer/view/homepage/homePage.dart';
 import 'package:videoplayer/view/userdetails/profilepage.dart';
 
-class Authcontroler extends GetxController {
+class AuthLogincontroler extends GetxController {
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
   TextEditingController resetmail = TextEditingController();
-  TextEditingController name = TextEditingController();
+
+ 
 
   FirebaseAuth auth = FirebaseAuth.instance;
+  // UserProfilecontroler userprofilecntrole= Get.find<UserProfilecontroler>();
+
   var loading = false.obs;
 
 //
@@ -73,15 +76,18 @@ class Authcontroler extends GetxController {
   signpage(BuildContext context, GlobalKey<FormState> FormKeys) async {
     try {
       // Check if the form is valid before proceeding
+      loading.value = true;
+
 
       await auth.createUserWithEmailAndPassword(
           email: email.text, password: password.text);
       print("Login successful");
-      Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) {
-          return const UserProfilePage();
-        },
-      ));
+      //  await userprofilecntrole.adduserdata(email,context);
+      // Navigator.of(context).push(MaterialPageRoute(
+      //   builder: (context) {
+      //     return const UserProfilePage();
+      //   },
+      // ));
       Get.snackbar("successfully", "");
 
       loading.value = false;

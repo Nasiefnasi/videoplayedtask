@@ -5,7 +5,7 @@ import 'package:videoplayer/view/core.dart';
 import 'package:videoplayer/view/textfiled/modeltextformfiled.dart';
 // import 'package:tfiled/modeltextformfiled.dart';
 // import 'package:get/get.dart';
-// import 'package:com.Nasi.FixHubbs/controller/user/getxController/authcontroler/authcontroler.dart';
+// import 'package:com.Nasi.FixHubbs/controller/user/getxController/AuthLogincontroler/AuthLogincontroler.dart';
 // import 'package:com.Nasi.FixHubbs/core/textFromFild/textFormfiledWidget.dart';
 // import 'package:com.Nasi.FixHubbs/core/size/colors&size.dart';
 

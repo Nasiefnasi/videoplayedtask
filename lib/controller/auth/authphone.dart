@@ -11,7 +11,7 @@ import 'package:videoplayer/view/userdetails/profilepage.dart';
 // import 'package:machinetasklilac/view/ath&otp/otp/otppage.dart';
 
 class Authphone extends GetxController {
-  Usercontroler userController = Get.find<Usercontroler>();
+  UserProfilecontroler userController = Get.find<UserProfilecontroler>();
   FirebaseAuth auth = FirebaseAuth.instance;
 
   // verifyphonenumber() async {

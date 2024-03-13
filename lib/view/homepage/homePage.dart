@@ -13,7 +13,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final authcontol = Get.put(Authcontroler());
+    // final authcontol = Get.put(AuthLogincontroler());
 
     var mediaquery = MediaQuery.of(context).size;
     return Scaffold(

@@ -15,7 +15,7 @@ import 'package:videoplayer/view/textfiled/modeltextformfiled.dart';
 //   @override
 //   Widget build(BuildContext context) {
 //     final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-//     final cntol = Get.put(Authcontroler());
+//     final cntol = Get.put(AuthLogincontroler());
 //     var mediaqury = MediaQuery.of(context);
 
 //     return Scaffold(resizeToAvoidBottomInset: true,
@@ -147,8 +147,8 @@ class SignPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-    final cntol = Get.put(Authcontroler());
-    final cntrol = Get.put(Usercontroler());
+    final cntol = Get.put(AuthLogincontroler());
+    final usercntrol = Get.put(UserProfilecontroler());
     var mediaqury = MediaQuery.of(context);
 
     return Scaffold(
@@ -162,11 +162,11 @@ class SignPage extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SizedBox(
-                    width: mediaqury.size.width * 0.80,
-                    height: mediaqury.size.width * 0.50,
-                    child: Image.asset("image/otpchar.png"),
-                  ),
+                  // SizedBox(
+                  //   width: mediaqury.size.width * 0.80,
+                  //   height: mediaqury.size.width * 0.50,
+                  //   child: Image.asset("image/otpchar.png"),
+                  // ),
                   Container(
                     width: mediaqury.size.width * .6,
                     height: mediaqury.size.height * .29,
@@ -176,9 +176,9 @@ class SignPage extends StatelessWidget {
                     ),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(20),
-                      child: Obx(() => cntrol.imageshow.value == ""
+                      child: Obx(() => usercntrol.imageshow.value == ""
                           ? Image.asset("image/otpchar.png", fit: BoxFit.cover)
-                          : Image.file(File(cntrol.imageshow.value),
+                          : Image.file(File(usercntrol.imageshow.value),
                               fit: BoxFit.cover)),
                     ),
                   ),
@@ -190,7 +190,7 @@ class SignPage extends StatelessWidget {
                               backgroundColor:
                                   MaterialStatePropertyAll(Colors.green)),
                           onPressed: () {
-                            cntrol.showimage(ImageSource.camera);
+                            usercntrol.showimage(ImageSource.camera);
                           },
                           icon: const Icon(
                             Icons.camera,
@@ -199,7 +199,7 @@ class SignPage extends StatelessWidget {
                           label: const Text(
                             "camera",
                             style: TextStyle(
-                                fontSize: 20,
+                                fontSize: 15,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white),
                           ))
@@ -222,7 +222,7 @@ class SignPage extends StatelessWidget {
                   const SizedBox(height: 20),
                   TextFormfildWidget(
                     obscureText: false,
-                    contro: cntrol.name,
+                    contro: usercntrol.name,
                     hinttext: 'Name',
                     validators: (value) {
                       if (value == null || value.isEmpty) {
@@ -233,21 +233,21 @@ class SignPage extends StatelessWidget {
                     Iconss: const Icon(Icons.person),
                   ),
                   const SizedBox(height: 10),
+                  // TextFormfildWidget(
+                  //   obscureText: false,
+                  //   contro: usercntrol.phone,
+                  //   hinttext: 'phone',
+                  //   validators: (value) {
+                  //     if (value == null || value.isEmpty) {
+                  //       return 'Please enter your phone';
+                  //     }
+                  //     return null;
+                  //   },
+                  //   Iconss: const Icon(Icons.mail),
+                  // ),
                   TextFormfildWidget(
                     obscureText: false,
-                    contro: cntrol.phone,
-                    hinttext: 'phone',
-                    validators: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter your phone';
-                      }
-                      return null;
-                    },
-                    Iconss: const Icon(Icons.mail),
-                  ),
-                  TextFormfildWidget(
-                    obscureText: false,
-                    contro: cntrol.birth,
+                    contro: usercntrol.birth,
                     hinttext: 'Birth',
                     validators: (value) {
                       if (value == null || value.isEmpty) {
@@ -293,8 +293,9 @@ class SignPage extends StatelessWidget {
                       ),
                       onPressed: () async {
                         await cntol.signpage(context, _formKey);
-                       await cntrol.adduserdata();
-                        cntol.name.clear();
+
+                        await usercntrol.adduserdata(cntol.email.text, context);
+
                         cntol.email.clear();
                         cntol.password.clear();
                       },

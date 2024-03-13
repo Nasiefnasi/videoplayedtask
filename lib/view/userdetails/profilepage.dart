@@ -20,7 +20,7 @@ class UserProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cntrol = Get.put(Usercontroler());
+    final cntrol = Get.put(UserProfilecontroler());
     var mediaqury = MediaQuery.of(context);
     return Scaffold(
       body: SafeArea(
@@ -124,7 +124,7 @@ class UserProfilePage extends StatelessWidget {
                               backgroundColor:
                                   MaterialStatePropertyAll(Colors.greenAccent)),
                           onPressed: () async {
-                            await cntrol.adduserdata();
+                            // await cntrol.adduserdata();
                             // await  cntol.UserProfilePage
                             //(context);
                             //   cntol.name.clear();

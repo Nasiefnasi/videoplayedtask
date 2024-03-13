@@ -12,7 +12,7 @@ class LoginSubmitButton extends StatelessWidget {
 
   final  mediaqury;
   final GlobalKey<FormState> _formKey;
-  final Authcontroler control;
+  final AuthLogincontroler control;
 
   @override
   Widget build(BuildContext context) {

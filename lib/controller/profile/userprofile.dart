@@ -8,12 +8,13 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:videoplayer/controller/auth/authemail_password.dart';
 import 'package:videoplayer/model/userdetails/userprofilemodel.dart';
 import 'package:videoplayer/view/userdetails/profilepage.dart';
 // import 'package:machinetasklilac/model/userdetails/userprofilemodel.dart';
 // import 'package:machinetasklilac/view/userdetails/profilepage.dart';
 
-class Usercontroler extends GetxController {
+class UserProfilecontroler extends GetxController {
   FirebaseFirestore fireinst = FirebaseFirestore.instance;
   FirebaseAuth auth = FirebaseAuth.instance;
   File? image;
@@ -88,33 +89,37 @@ class Usercontroler extends GetxController {
     }
   }
 
-  adduserdata() async {
+  adduserdata(String email, BuildContext context) async {
     try {
       loading.value = true;
       await imageuplode();
       Userprofile profile = Userprofile(
           name: name.text,
           imageUrl: getimagepath,
-          emails: email.text,
+          emails: email,
           dob: birth.text);
       fireinst
           .collection("User")
           .doc(auth.currentUser!.uid)
           .set(profile.toMap());
       loading.value = false;
+      Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) {
+          return const UserProfilePage();
+        },
+      ));
     } catch (e) {
       loading.value = false;
       Get.snackbar("Error", '${e}');
     }
   }
 
-  verifyphonenumber() async {
+  verifyphonenumberOtp() async {
     auth.verifyPhoneNumber(
         verificationCompleted: (PhoneAuthCredential credential) {},
         verificationFailed: (FirebaseAuthException ex) {},
         codeSent: (String verificationId, int? resendtoken) {
           Get.put(UserProfilePage());
-
         },
         codeAutoRetrievalTimeout: (String verificationId) {},
         phoneNumber: phone.text.toString());

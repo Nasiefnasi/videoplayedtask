@@ -191,7 +191,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
-  var control = Get.put(Authcontroler());
+  var control = Get.put(AuthLogincontroler());
   var mediaqury;
 
   @override

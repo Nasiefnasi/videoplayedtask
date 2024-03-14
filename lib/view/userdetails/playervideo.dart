@@ -2228,6 +2228,7 @@
 //   }
 // }
 import 'package:flutter/material.dart';
+import 'package:flutter_file_downloader/flutter_file_downloader.dart';
 import 'package:video_player/video_player.dart';
 import 'package:chewie/chewie.dart';
 
@@ -2247,13 +2248,14 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
     "https://lamamiablogs.s3.ap-south-1.amazonaws.com/document_6309864315730005772.mp4",
     "https://lamamiablogs.s3.ap-south-1.amazonaws.com/document_6309864315730005770.mp4",
   ];
-
+  final downloadlink =
+      "https://lamamiablogs.s3.ap-south-1.amazonaws.com/document_6309864315730005771.mp4";
+  double? _progerss;
   @override
   void initState() {
     super.initState();
-    _controllers = _videoUrls
-        .map((url) => VideoPlayerController.network(url))
-        .toList();
+    _controllers =
+        _videoUrls.map((url) => VideoPlayerController.network(url)).toList();
     _chewieControllers = _controllers
         .map((controller) => ChewieController(
               videoPlayerController: controller,
@@ -2283,7 +2285,8 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
   }
 
   Future<void> _initializeControllers() async {
-    await Future.wait(_controllers.map((controller) => controller.initialize()));
+    await Future.wait(
+        _controllers.map((controller) => controller.initialize()));
   }
 
   void _playPause() {
@@ -2323,7 +2326,7 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
   void _fastForward() {
     setState(() {
       final newPosition = _controllers[_currentVideoIndex].value.position +
-          Duration(seconds: 10);
+          Duration(seconds: 8);
       _controllers[_currentVideoIndex].seekTo(newPosition);
     });
   }
@@ -2334,6 +2337,20 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
           Duration(seconds: 10);
       _controllers[_currentVideoIndex].seekTo(newPosition);
     });
+  }
+
+  void Downloadwd() {
+    // FileDownloader.downloadFile(url: downloadlink,onProgress: (fileName, progress) {
+    //   setState(() {
+    //     _progerss = progress;
+    //   });
+
+    // },onDownloadCompleted: (path) {
+    //   print("path$path");
+    //   setState(() {
+    //     _progerss =null;
+    //   });
+    // },);
   }
 
   @override
@@ -2347,64 +2364,88 @@ class _VideoPlayerPageState extends State<VideoPlayerPage> {
         title: Text('Video Player'),
       ),
       body: SafeArea(
-        child: Container(
-          height: mediaQuery.height * .4,
-          color: Colors.amberAccent,
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              Container(
-                child: Chewie(
-                  controller: _chewieControllers[_currentVideoIndex],
-                ),
-              ),
-              Positioned(
-                bottom: mediaQuery.height * .03,
-                top: mediaQuery.height * .31,
-                child: Container(
-                  height: mediaQuery.height * .5,
-                  color: Colors.black26,
-                  child: Column(
-                    children: [
-                      Spacer(),
-                      Container(
-                        height: 40,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            IconButton(
-                              onPressed: _rewind,
-                              icon: Icon(Icons.replay_10),
-                            ),
-                            IconButton(
-                              onPressed: _previousVideo,
-                              icon: Icon(Icons.skip_previous),
-                            ),
-                            IconButton(
-                              onPressed: _playPause,
-                              icon: Icon(_controllers[_currentVideoIndex]
-                                      .value
-                                      .isPlaying
-                                  ? Icons.pause
-                                  : Icons.play_arrow),
-                            ),
-                            IconButton(
-                              onPressed: _nextVideo,
-                              icon: Icon(Icons.skip_next),
-                            ),
-                            IconButton(
-                              onPressed: _fastForward,
-                              icon: Icon(Icons.forward_10),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+        child: Column(
+          children: [
+            Container(
+              height: mediaQuery.height * .4,
+              // color: Colors.amberAccent,
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  Container(
+                    child: Chewie(
+                      controller: _chewieControllers[_currentVideoIndex],
+                    ),
                   ),
-                ),
+                  Positioned(
+                    bottom: mediaQuery.height * .03,
+                    top: mediaQuery.height * .31,
+                    child: Container(
+                      height: mediaQuery.height * .7,
+                      // color: Colors.black26,
+                      child: Column(
+                        children: [
+                          Spacer(),
+                          Container(
+                            height: 40,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                IconButton(
+                                  onPressed: _rewind,
+                                  icon: Icon(Icons.replay_10),
+                                ),
+                                IconButton(
+                                  onPressed: _previousVideo,
+                                  icon: Icon(Icons.skip_previous),
+                                ),
+                                IconButton(
+                                  onPressed: _playPause,
+                                  icon: Icon(_controllers[_currentVideoIndex]
+                                          .value
+                                          .isPlaying
+                                      ? Icons.pause
+                                      : Icons.play_arrow),
+                                ),
+                                IconButton(
+                                  onPressed: _nextVideo,
+                                  icon: Icon(Icons.skip_next),
+                                ),
+                                IconButton(
+                                  onPressed: _fastForward,
+                                  icon: Icon(Icons.forward_10),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+            Container(
+                width: mediaQuery.width * .3,
+                child:_progerss!=null?CircularProgressIndicator(): ElevatedButton(
+                    onPressed: () {
+                      FileDownloader.downloadFile(
+                        url: downloadlink,
+                        onProgress: (fileName, progress) {
+                          setState(() {
+                            _progerss = progress;
+                          });
+                        },
+                        onDownloadCompleted: (path) {
+                          print("path$path");
+                          setState(() {
+                            _progerss = null;
+                          });
+                        },
+                      );
+                    },
+                    child: Text("Download ")))
+          ],
         ),
       ),
     );

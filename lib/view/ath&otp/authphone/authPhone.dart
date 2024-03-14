@@ -1,12 +1,9 @@
-// ignore_for_file: prefer_typing_uninitialized_variables, prefer_const_constructors
+// ignore_for_file: prefer_typing_uninitialized_variables, prefer_const_constructors, unused_import, file_names
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-// import 'package:machinetasklilac/controller/profile/userprofile.dart';
-// import 'package:machinetasklilac/view/ath&otp/authphone/submitwidget.dart';
-// import 'package:machinetasklilac/view/core.dart';
-// import 'package:machinetasklilac/view/textfiled/modeltextformfiled.dart';
-import 'package:videoplayer/controller/profile/userprofile.dart';
+import 'package:videoplayer/controller/auth/authemail_password.dart';
+
 import 'package:videoplayer/view/ath&otp/authphone/submitwidget.dart';
 import 'package:videoplayer/view/core.dart';
 import 'package:videoplayer/view/textfiled/modeltextformfiled.dart';
@@ -20,9 +17,8 @@ class PhoneAuth extends StatefulWidget {
 
 class _PhoneAuthState extends State<PhoneAuth> {
   final _formKey = GlobalKey<FormState>();
-  var control = Get.put(UserProfilecontroler());
+  final cntol = Get.put(AuthLogincontroler());
   var mediaqury;
-
   @override
   Widget build(BuildContext context) {
     mediaqury = MediaQuery.of(context);
@@ -57,7 +53,7 @@ class _PhoneAuthState extends State<PhoneAuth> {
                     child: Column(
                       children: [
                         TextFormfildWidget(
-                          contro: control.phone,
+                          contro: cntol.phone,
                           hinttext: 'Phone Number',
                           Iconss: const Icon(Icons.lock),
                           obscureText: false,

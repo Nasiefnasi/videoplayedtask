@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_typing_uninitialized_variables
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:videoplayer/controller/auth/authemail_password.dart';
@@ -10,7 +12,7 @@ class LoginSubmitButton extends StatelessWidget {
     required this.control,
   }) : _formKey = formKey;
 
-  final  mediaqury;
+  final mediaqury;
   final GlobalKey<FormState> _formKey;
   final AuthLogincontroler control;
 
@@ -22,8 +24,7 @@ class LoginSubmitButton extends StatelessWidget {
         height: mediaqury.size.height * 0.05,
         child: ElevatedButton(
           style: const ButtonStyle(
-            backgroundColor:
-                MaterialStatePropertyAll(Colors.greenAccent),
+            backgroundColor: MaterialStatePropertyAll(Colors.greenAccent),
           ),
           onPressed: () {
             if (_formKey.currentState?.validate() ?? false) {

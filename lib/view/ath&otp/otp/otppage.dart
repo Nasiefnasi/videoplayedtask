@@ -1,26 +1,22 @@
-// ignore_for_file: file_names, sort_child_properties_last, unused_local_variable
+// ignore_for_file: file_names, sort_child_properties_last, unused_local_variable, prefer_const_constructors, must_be_immutable
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-// import 'package:machinetasklilac/controller/auth/authphone.dart';
-// import 'package:machinetasklilac/controller/profile/userprofile.dart';
-// import 'package:machinetasklilac/view/core.dart';
-// import 'package:machinetasklilac/view/textfiled/modeltextformfiled.dart';
+import 'package:videoplayer/controller/auth/authemail_password.dart';
+
 import 'package:videoplayer/controller/auth/authphone.dart';
-import 'package:videoplayer/controller/profile/userprofile.dart';
 import 'package:videoplayer/view/core.dart';
 import 'package:videoplayer/view/textfiled/modeltextformfiled.dart';
 
 class OtpScreen extends StatelessWidget {
- OtpScreen({
-    super.key,required this.verificationId
-  });
+  OtpScreen({super.key, required this.verificationId});
   String verificationId;
 
   @override
   Widget build(BuildContext context) {
-    final usercontol = Get.put(UserProfilecontroler());
+    // final usercontol = Get.put(UserProfilecontroler());
     final authcontol = Get.put(Authphone());
+    final cntol = Get.put(AuthLogincontroler());
 
     var mediaquery = MediaQuery.of(context).size;
     return Scaffold(
@@ -51,15 +47,12 @@ class OtpScreen extends StatelessWidget {
                       hight20,
                       TextFormfildWidget(
                           obscureText: false,
-                          contro: usercontol.otpcontroller,
+                          contro: cntol.otpcontroller,
                           hinttext: "Otp",
                           Iconss: Icon(Icons.mail)),
                       ElevatedButton(
-                          onPressed: ()async {
-                          await  authcontol.otpverify(verificationId);
-                            
-
-                            
+                          onPressed: () async {
+                            await authcontol.otpverify(verificationId);
                           },
                           child: const Text("Submit")),
                     ],

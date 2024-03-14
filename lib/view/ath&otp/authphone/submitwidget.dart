@@ -3,7 +3,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-// import 'package:machinetasklilac/controller/auth/authphone.dart';
 import 'package:videoplayer/controller/auth/authphone.dart';
 
 class Authsubmit extends StatelessWidget {
@@ -27,12 +26,7 @@ class Authsubmit extends StatelessWidget {
         onPressed: () async {
           await usercotrol.verifyPhoneNumber(context);
         },
-        child:
-            // control.loading.value
-            // ? const CircularProgressIndicator(
-            //     color: Colors.white,
-            //   )
-            const Text(
+        child: const Text(
           "Send Otp",
           style: TextStyle(
             fontWeight: FontWeight.bold,

@@ -1,8 +1,10 @@
-// ignore_for_file: use_key_in_widget_constructors
+// ignore_for_file: use_key_in_widget_constructors, unused_local_variable
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:videoplayer/controller/auth/authemail_password.dart';
 import 'package:videoplayer/view/core.dart';
 
 class HiddenDrawer extends StatelessWidget {
@@ -10,6 +12,7 @@ class HiddenDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cntrol = Get.put(AuthLogincontroler());
     var mediaquery = MediaQuery.of(context).size;
     FirebaseAuth auth = FirebaseAuth.instance;
     return Drawer(
@@ -74,6 +77,16 @@ class HiddenDrawer extends StatelessWidget {
                   style: const TextStyle(
                       fontSize: 20, fontWeight: FontWeight.bold),
                 ), // Handle null dob
+              ),
+              GestureDetector(
+                onTap: () {cntrol.Logout(context);},
+                child: ListTile(
+                  title: Text(
+                    'LogOut',
+                    style: const TextStyle(
+                        fontSize: 20, fontWeight: FontWeight.bold),
+                  ), // Handle null dob
+                ),
               ),
             ],
           );

@@ -8,9 +8,10 @@ import 'package:videoplayer/firebase_options.dart';
 // import 'package:machinetasklilac/firebase_options.dart';
 // import 'package:machinetasklilac/view/ath&otp/authphone/authPhone.dart';
 // import 'package:machinetasklilac/view/userdetails/profilepage.dart';
-import 'package:videoplayer/view/email_password/Design%20Page/sign_inPage.dart';
+import 'package:videoplayer/view/userdetails/playervideo.dart';
 
 void main() async {
+  
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
@@ -27,6 +28,6 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: SignPage());
+        home:   VideoPlayerPage ());
   }
 }

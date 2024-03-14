@@ -25,7 +25,7 @@ class UserProfilecontroler extends GetxController {
   String getimagepath = '';
   String imagePath = '';
   var imageshow = ''.obs;
-  var loading = false.obs;
+  dynamic loading = false.obs;
   TextEditingController otpcontroller = TextEditingController();
 
   imageuplode() async {
@@ -89,30 +89,80 @@ class UserProfilecontroler extends GetxController {
     }
   }
 
-  adduserdata(String email, BuildContext context) async {
+  // adduserdata(String email, BuildContext context) async {
+  //   try {
+  //     loading.value = true;
+  //     await imageuplode();
+  //     Userprofile profile = Userprofile(
+  //         name: name.text,
+  //         imageUrl: getimagepath,
+  //         emails: email,
+  //         dob: birth.text);
+  //     fireinst
+  //         .collection("User")
+  //         .doc(auth.currentUser!.uid)
+  //         .set(profile.toMap());
+  //     loading.value = false;
+  //     Navigator.of(context).push(MaterialPageRoute(
+  //       builder: (context) {
+  //         return const UserProfilePage();
+  //       },
+  //     ));
+  //   } catch (e) {
+  //     loading.value = false;
+  //     Get.snackbar("Error", '${e}');
+  //   }
+  // }
+
+
+
+
+
+
+ Future<void> addUserData(String email, BuildContext context) async {
     try {
-      loading.value = true;
-      await imageuplode();
+      loading = true; // Change loading state
+      String? imagePath = await imageUpload(); // Assuming imageUpload() is a function to upload images
       Userprofile profile = Userprofile(
-          name: name.text,
-          imageUrl: getimagepath,
-          emails: email,
-          dob: birth.text);
-      fireinst
+        name: name.text,
+        imageUrl: imagePath ?? "", // Set default value if imagePath is null
+        emails: email,
+        dob: birth.text,
+      );
+      await fireinst
           .collection("User")
           .doc(auth.currentUser!.uid)
           .set(profile.toMap());
-      loading.value = false;
+      loading = false; // Change loading state
       Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) {
-          return const UserProfilePage();
-        },
+        builder: (context) => const UserProfilePage(),
       ));
     } catch (e) {
-      loading.value = false;
-      Get.snackbar("Error", '${e}');
+      loading = false; // Change loading state
+      Get.snackbar("Error", '$e');
     }
   }
+
+  // Your image upload function goes here
+  Future<String?> imageUpload() async {
+    // Implement your image upload logic here
+    // Return the image URL or null if upload fails
+    return null;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   verifyphonenumberOtp() async {
     auth.verifyPhoneNumber(

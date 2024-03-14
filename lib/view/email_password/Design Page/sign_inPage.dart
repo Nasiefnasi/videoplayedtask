@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -294,10 +293,14 @@ class SignPage extends StatelessWidget {
                       onPressed: () async {
                         await cntol.signpage(context, _formKey);
 
-                        await usercntrol.adduserdata(cntol.email.text, context);
+                        await usercntrol.addUserData(cntol.email.text, context);
 
                         cntol.email.clear();
                         cntol.password.clear();
+                        usercntrol.name.clear();
+                        usercntrol.birth.clear();
+                        
+
                       },
                       child: Obx(
                         () => cntol.loading.value

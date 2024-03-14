@@ -4,7 +4,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
-import 'package:videoplayer/controller/profile/userprofile.dart';
 import 'package:videoplayer/view/email_password/Design%20Page/loginpage.dart';
 import 'package:videoplayer/view/userdetails/profilepage.dart';
 
